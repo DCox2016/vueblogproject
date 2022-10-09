@@ -1,0 +1,133 @@
+main {
+    display: flex;
+    flex-direction: column;
+    background-color:whitesmoke;
+    padding: 0%;
+    margin: 0%;
+}
+
+.content {
+    width: 50%;
+    margin: auto;
+}
+
+.loading {
+    width: 80%;
+    margin: auto;
+}
+
+.loadingCircle {
+    width: 5%;
+    animation-name: spin;
+    animation-duration: 5000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.postList ul {
+    list-style: none;
+}
+
+.postList .container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5%;
+    justify-content: space-around;
+    background-color: white;
+    border: 2px solid gray;
+}
+
+.postList .container .thumbNail {
+    width: 13%;
+    margin: 2%;
+}
+
+.postList .container .thumbNail img {
+    border: 2px solid black;
+}
+
+.postList .container .titleAuthInfo {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin: 2%;
+}
+
+.postList .container .titleAuthInfo .title {
+    font-family: "Copperplate", "Papyrus", fantasy;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.postList .container .titleAuthInfo .body {
+    font-size: 15px;
+    margin: 1%;
+}
+
+.postList .container .titleAuthInfo .user {
+    font-family: "Copperplate", "Papyrus", fantasy;
+    font-size: 25px;
+    margin-top: 7%;
+}
+
+.postList .container .edit {
+   width: 5%;
+   margin-top: 14%;
+   margin-right: 2%;
+}
+
+.postList .container .edit .editIcon {
+    width: 90%;
+}
+
+.postContent {
+    position: fixed;
+    z-index: 999;
+    top: 0%;
+    width: 50%;
+    background-color: white;
+    height: 100%;
+    border: 2px solid black;
+}
+
+.postContent #closeButton {
+    width: 5%;
+}
+
+.postContent #postDetails {
+    margin: 10%;
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    border: 2px solid black;
+}
+
+.success {
+    background-color: green;
+    width: 70%;
+    margin: auto;
+    color:white;
+    padding: 5%;
+    text-align: center;
+    font-size: 25px;
+}
+
+.error {
+    background-color: red;
+    width: 70%;
+    margin: auto;
+    color:white;
+    padding: 5%;
+    text-align: center;
+    font-size: 25px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
