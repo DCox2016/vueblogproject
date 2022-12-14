@@ -11,17 +11,12 @@ export default {
         Image
     },
     props: {
-        postId: Number
+        postId: Number,
     },
-    mounted() {
-        fetch('https://jsonplaceholder.typicode.com/albums?id=' + this.postId)
-            .then(response => response.json())
-            .then(json => this.albumId = json[0].id);
-    }
 }
 </script>
 <template>
     <div>
-        <Image :albumId="albumId"/>
+        <!--<Image :albumId="albumId"/>-->
     </div>
 </template>

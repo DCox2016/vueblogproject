@@ -8,10 +8,16 @@ export default {
         return {
             editDisplay: false,
             postToEdit: null,
+            postPhoto: null,
         }
     },
     props: {
         blogData: Object,
+        commentData: Object,
+        albumData: Object,
+        photoData: Object,
+        userData: Object,
+        todoData: Object,
     },
     components: {
         PostImage,
@@ -19,6 +25,9 @@ export default {
         PostEdit,
     },
     methods: {
+        getPostPhoto(id){
+          
+        },
         displayEdit(data) {
             this.postToEdit = data;
             if (this.editDisplay == false) {
@@ -38,10 +47,10 @@ export default {
         <ul>
             <li v-for="data in blogData">
                 <div class="container">
-                    <PostImage :postId="data.id" class="thumbNail" />
+                    <PostImage :postId="data.id" :photoData="photoData" class="thumbNail" />
                     <div class="titleAuthInfo">
-                        <div class="title">Title: {{data.title}}</div>
-                        <div class="body">{{data.body}}</div>
+                        <div class="title">Title: {{ data.title }}</div>
+                        <div class="body">{{ data.body }}</div>
                         <AuthInfo :userId="data.userId" class="user" />
                     </div>
                     <div class="edit">

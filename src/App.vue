@@ -8,6 +8,7 @@
 // 6. Feel free to work directly in this StackBlitz project or start your own project locally and share it via Github
 
 import PostTable from './components/PostTable.vue'
+import axios from 'axios';
 
 export default {
   data() {
@@ -15,24 +16,53 @@ export default {
       loading: false,
       dataRecieved: null,
       blogData: null,
+      commentData: null,
+      albumData: null,
+      photoData: null,
+      userData: null,
+      todoData: null,
     }
   },
   components: { PostTable },
-  created() {
-    this.fetchPost();
+  beforeCreate() {
+    this.loading;
   },
-  methods: {
-    fetchPost() {
-      this.loading = true
+  async created() {
+    //All data on page create
+    //Get Post
+    await axios.get('https://jsonplaceholder.typicode.com/posts')
+      .then(response => (
+        this.blogData = response.data));
 
-      fetch('https://jsonplaceholder.typicode.com/posts')
-        .then(response => response.json())
-        .then(json => this.blogData = json)
+    //Get Comments
+    await axios.get('https://jsonplaceholder.typicode.com/comments')
+      .then(response => (
+        this.commentData = response.data));
 
-      this.loading = false;
-      this.dataRecieved = true;
-    }
-  }
+    //Get Albums
+    await axios.get('https://jsonplaceholder.typicode.com/albums')
+      .then(response => (
+        this.albumData = response.data));
+
+
+    //Get Photos
+    await axios.get('https://jsonplaceholder.typicode.com/photos')
+      .then(response => (
+        this.photoData = response.data));
+
+
+    //Get Users
+    await axios.get('https://jsonplaceholder.typicode.com/users')
+      .then(response => (
+        this.userData = response.data));
+
+    //Get Todos
+    await axios.get('https://jsonplaceholder.typicode.com/todos')
+      .then(response => (
+        this.blogData = response.data,
+        this.loading = false,
+        this.dataRecieved = true));
+  },
 }
 </script>
 
@@ -49,7 +79,14 @@ export default {
       </svg>
       Loading....
     </div>
-    <PostTable v-if="dataRecieved" class="content" :blogData="blogData" />
+    <PostTable v-if="dataRecieved" class="content" 
+    :blogData="blogData" 
+    :commentData="commentData"
+    :albumData="albumData"
+    :photoData="photoData"
+    :userData="userData"
+    :todoData="todoData"
+    />
   </main>
 </template>
 

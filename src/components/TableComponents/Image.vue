@@ -9,15 +9,15 @@ export default {
     props: {
         albumId: Number,
     },
-    mounted() {
+    /*mounted() {
         fetch('https://jsonplaceholder.typicode.com/photos?albumId=' + this.albumId)
             .then(response => response.json())
             .then(json => this.thumbnailUrl = json[0].thumbnailUrl);
-    }
+    }*/
 }
 </script>
 <template> 
     <div>
-        <img :src="thumbnailUrl" />
+        <!--<img :src="thumbnailUrl" />-->
     </div>
 </template>
