@@ -1,4 +1,5 @@
 # vue-blog
+This was a timed assessment, so things could have been better.
 
 This template should help get you started developing with Vue 3 in Vite.
 
