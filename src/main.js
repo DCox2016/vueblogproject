@@ -7,7 +7,9 @@ import Edit from '@/views/Edit.vue'
 const router = createRouter( {
     history: createWebHistory(),
     routes: [
-        {path: '/edit', name: 'Edit', component: Edit}
+        {
+            path: '/', name: 'Home', component: App,
+            path: '/edit', name: 'Edit', component: Edit}
     ]
 })
 

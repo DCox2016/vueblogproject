@@ -1,85 +1,10 @@
-main {
-    display: flex;
-    flex-direction: column;
-    background-color:whitesmoke;
-    padding: 0%;
-    margin: 0%;
+body {
+    background: darkgray;
 }
-
-.content {
-    width: 50%;
-    margin: auto;
+#leftcardSection {
+    width: 30%;
+    border-right: 1px solid black;
 }
-
-.loading {
-    width: 80%;
-    margin: auto;
-}
-
-.loadingCircle {
-    width: 5%;
-    animation-name: spin;
-    animation-duration: 5000ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-
-.postList ul {
-    list-style: none;
-}
-
-.postList .container {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 5%;
-    justify-content: space-around;
-    background-color: white;
-    border: 2px solid gray;
-}
-
-.postList .container .thumbNail {
-    width: 13%;
-    margin: 2%;
-}
-
-.postList .container .thumbNail img {
-    border: 2px solid black;
-}
-
-.postList .container .titleAuthInfo {
-    display: flex;
-    flex-direction: column;
-    width: 75%;
-    margin: 2%;
-}
-
-.postList .container .titleAuthInfo .title {
-    font-family: "Copperplate", "Papyrus", fantasy;
-    font-weight: bold;
-    font-size: 25px;
-}
-
-.postList .container .titleAuthInfo .body {
-    font-size: 15px;
-    margin: 1%;
-}
-
-.postList .container .titleAuthInfo .user {
-    font-family: "Copperplate", "Papyrus", fantasy;
-    font-size: 25px;
-    margin-top: 7%;
-}
-
-.postList .container .edit {
-   width: 5%;
-   margin-top: 14%;
-   margin-right: 2%;
-}
-
-.postList .container .edit .editIcon {
-    width: 90%;
-}
-
 .postContent {
     position: fixed;
     z-index: 999;
@@ -96,8 +21,10 @@ main {
     flex-direction: row;
     justify-content: space-between;
 }
-svg.closeButton {
-    width: 2%;
+svg.backButton {
+    width: 10%;
+    color: blue;
+    margin: 5%;
 }
 #postDetails {
     display: flex;
@@ -124,14 +51,4 @@ svg.closeButton {
     padding: 5%;
     text-align: center;
     font-size: 25px;
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
 }

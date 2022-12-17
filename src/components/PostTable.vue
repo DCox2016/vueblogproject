@@ -1,6 +1,7 @@
 <script>
 import PostThumbnail from "./TableComponents/PostThumbnail.vue";
 import AuthInfo from "./TableComponents/AuthInfo.vue";
+import Comments from "./TableComponents/Comments.vue";
 
 export default {
     data() {
@@ -22,6 +23,7 @@ export default {
     components: {
         PostThumbnail,
         AuthInfo,
+        Comments,
     },
     methods: {
         isCompleted(userId) {
@@ -42,31 +44,27 @@ export default {
 }
 </script>
 <template>
-    <div class="postList">
-        <ul>
-            <li v-for="data in blogData">
-                <div class="container" v-if="isCompleted(data.userId) == true">
-                    <PostThumbnail :postId="data.id" :userId="data.userId" :albums="albumData" :photos="photoData"
-                        class="thumbNail" />
-                    <div class="titleAuthInfo">
-                        <div class="title">Title: {{ data.title }}</div>
-                        <div class="body">{{ data.body }}</div>
+    <div class="container">
+        <div v-for="data in blogData">
+            <div class="card my-2 d-flex flex-row" v-if="isCompleted(data.userId) == true">
+                <div class="d-flex flex-column ml-1 mt-1" id="leftcardSection">
+                    <PostThumbnail :postId="data.id" :userId="data.userId" :albums="albumData" :photos="photoData" class="mt-3 ml-4 mb-5 pb-4"/>
+                    <p class="card-title p-2 mt-5">
                         <AuthInfo :userId="data.userId" :userData="userData" class="user" />
-                    </div>
-                    <div class="edit">
-                        <router-link to="/edit">
-                            <button @click="displayEdit(data)" title="Edit Post">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="editIcon">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                </svg>
-                            </button>
-                        </router-link>
-                    </div>
+                    </p>
                 </div>
-            </li>
-        </ul>
+                <div class="card-body">
+                    <p class="card-text">Title: {{ data.title }}</p>
+                    <p class="card-text">{{ data.body }}</p>
+                    <Comments :postId="data.id" :commentData="commentData" />
+                    <router-link to="/edit" class="d-flex flex-row-reverse m-2">
+                        <button @click="displayEdit(data)" title="Edit Post" class="btn btn-primary">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </button>
+                    </router-link>
+                </div>
+            </div>
+        </div>
         <router-view :postToEdit="postToEdit" :albums="albumData" :photos="photoData"></router-view>
     </div>
 </template>
