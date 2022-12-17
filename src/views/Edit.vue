@@ -1,4 +1,6 @@
 <script>
+import Image from '../components/TableComponents/Image.vue';
+
 export default {
     data() {
         return {
@@ -6,10 +8,16 @@ export default {
             body: null,
             message: null,
             submitted: false,
+            albumId: null,
         }
+    },
+    components: {
+        Image,
     },
     props: {
         postToEdit: Object,
+        albums: Object,
+        photos: Object,
     },
     methods: {
         closeModal() {
@@ -30,7 +38,14 @@ export default {
                     'Content-type': 'application/json; charset=UTF-8',
                 },
             })
-            .then((response) => this.message = (response.status));
+                .then((response) => this.message = (response.status));
+        }
+    },
+    beforeMount() {
+        for (var i = 0; i < this.albums.length; i++) {
+            if (this.albums[i].userId === this.postToEdit.userId) {
+                this.albumId = this.albums[i].id;
+            }
         }
     },
     mounted() {
@@ -41,28 +56,31 @@ export default {
 </script>
 <template>
     <div class="postContent">
-        <div id="close">
+        <div id="back">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" id="closeButton" @click="closeModal()">
+                stroke="currentColor" class="closeButton">
                 <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
             </svg>
+            <div><button @click="updatePost()">Save</button></div>
         </div>
         <div id="postDetails">
-            <h2>Post Edit</h2>
             <div class="editTitle">
                 <div>Title: </div>
-                <textarea rows="4" cols="125" v-model="title"></textarea>
+                <textarea rows="4" cols="95" v-model="title"></textarea>
                 <div>Body: </div>
-                <textarea rows="4" cols="125" v-model="body"></textarea>
-                <div><button @click="updatePost()">Save</button></div>
+                <textarea rows="4" cols="95" v-model="body"></textarea>
+            </div>
+            <div class="editImages">
+                <div>Post Image: </div>
+                <Image :albumId="albumId" :photos="this.photos" display="edit" />
             </div>
         </div>
         <div class="updateMessage" v-if="submitted">
             <div v-if="message == 200" class="success">
                 Post has been updated
             </div>
-            <div v-else  class="error">Error. Can not update post.</div>
+            <div v-else class="error">Error. Can not update post.</div>
         </div>
     </div>
 </template>

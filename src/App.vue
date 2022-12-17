@@ -25,7 +25,7 @@ export default {
   },
   components: { PostTable },
   beforeCreate() {
-    this.loading;
+    this.loading = true;
   },
   async created() {
     //All data on page create
@@ -59,7 +59,7 @@ export default {
     //Get Todos
     await axios.get('https://jsonplaceholder.typicode.com/todos')
       .then(response => (
-        this.blogData = response.data,
+        this.todoData = response.data,
         this.loading = false,
         this.dataRecieved = true));
   },

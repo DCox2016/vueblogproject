@@ -7,15 +7,20 @@ export default {
         }
     },
     props: {
-        userId: Number
+        userId: Number,
+        userData: Object,
     },
-    mounted(){
-            fetch('https://jsonplaceholder.typicode.com/users?id=' + this.userId)
-                .then(response => response.json())
-                .then(json => this.userName = json[0].name);
+    computed: {
+        arthurName() {
+            for(var i = 0; i < this.userData.length; i++){
+                if(this.userData[i].id == this.userId){
+                    return this.userData[i].name
+                }
+            }
+        }
     },
 }
 </script>
 <template>
-    <div>Arthur: {{userName}}</div>
+    <div>Arthur: {{arthurName}}</div>
 </template>

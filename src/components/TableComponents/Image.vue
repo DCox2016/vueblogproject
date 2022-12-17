@@ -1,23 +1,34 @@
 <script>
 
 export default {
-    data() {
-        return {
-            thumbnailUrl: null,
-        }
-    },
     props: {
+        photos: Object,
         albumId: Number,
+        display: String,
     },
-    /*mounted() {
-        fetch('https://jsonplaceholder.typicode.com/photos?albumId=' + this.albumId)
-            .then(response => response.json())
-            .then(json => this.thumbnailUrl = json[0].thumbnailUrl);
-    }*/
+    computed: {
+        thumbnailUrl() {
+           for(var i = 0; i < this.photos.length; i++){
+            if(this.photos[i].albumId == this.albumId){
+                return this.photos[i].thumbnailUrl;
+            }
+           }
+        },
+        Url() {
+           for(var i = 0; i < this.photos.length; i++){
+            if(this.photos[i].albumId == this.albumId){
+                return this.photos[i].url;
+            }
+           }
+        }
+    }
 }
 </script>
-<template> 
-    <div>
-        <!--<img :src="thumbnailUrl" />-->
+<template>
+    <div v-if="display == 'thumbnail' | display == 'edit'">
+        <img :src="thumbnailUrl" />
+    </div>
+    <div v-if="display == 'edit'">
+        <img :src="Url" />
     </div>
 </template>

@@ -84,22 +84,26 @@ main {
     position: fixed;
     z-index: 999;
     top: 0%;
-    width: 50%;
+    left: 0%;
+    width: 100%;
     background-color: white;
     height: 100%;
-    border: 2px solid black;
+    overflow:scroll;
 }
 
-.postContent #closeButton {
-    width: 5%;
-}
-
-.postContent #postDetails {
-    margin: 10%;
+.postContent #back {
     display: flex;
-    flex-direction: column;
-    padding: 2%;
-    border: 2px solid black;
+    flex-direction: row;
+    justify-content: space-between;
+}
+svg.closeButton {
+    width: 2%;
+}
+#postDetails {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 2%;
 }
 
 .success {
